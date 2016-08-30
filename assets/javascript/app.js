@@ -22,6 +22,8 @@ for (i = 0; i < topics.length; i++) {
 
 $(".natureButton").on("click", function() {
 
+	$("#natureImages").empty();
+
 	var natureSearch = $(this).attr("data-name");
 	var queryURL = "http://api.giphy.com/v1/gifs/search?limit=10&q=" + natureSearch + "&api_key=dc6zaTOxFJmzC";
 
@@ -32,12 +34,27 @@ $(".natureButton").on("click", function() {
 
 			console.log(response);
 
-//make a for loop to loop through results 
-			var displayRating = response.data.rating;
+			var results = response.data;
+//loop through array of results and display each
+			for (j = 0; j < results.length; j++) {
 
-			var ratingParagraph = $("<p>").text("Rating: " + displayRating);
+				var displayRating = results[j].rating;
 
-			$("#natureImages").append(ratingParagraph);
+				if (displayRating.length === 0) {
+					displayRating = "no rating given";
+				}
+
+				var ratingParagraph = $("<p>").text("Rating: " + displayRating);
+
+				var stillURL = results[j].images.fixed_height_still.url;
+
+				//var animatedURL = results[j].images.fixed_height;
+
+				var startingImage = $("<img>").attr("src", stillURL);
+
+				$("#natureImages").append(startingImage);
+				$("#natureImages").append(ratingParagraph);
+			}
 		})
 
 //end of on click function	
