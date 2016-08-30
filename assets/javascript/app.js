@@ -17,7 +17,7 @@ for (i = 0; i < topics.length; i++) {
 }
 
 
-//end of ceatebuttons function
+//end of createbuttons function
 }
 
 $(".natureButton").on("click", function() {
@@ -48,16 +48,36 @@ $(".natureButton").on("click", function() {
 
 				var stillURL = results[j].images.fixed_height_still.url;
 
-				//var animatedURL = results[j].images.fixed_height;
+				var animatedURL = results[j].images.fixed_height.url;
 
-				var startingImage = $("<img>").attr("src", stillURL);
+				var displayImage = $("<img class='natureChoice' data-state='still' data-unmoving='" + stillURL + "' data-moving='" + animatedURL + "'>").attr("src", stillURL);
 
-				$("#natureImages").append(startingImage);
+				//var animatedImage = $("<img class='natureChoice' data-state='moving'>").attr("src", animatedURL);
+
+				$("#natureImages").append(displayImage);
+				//$("#natureImages").append(animatedImage);
 				$("#natureImages").append(ratingParagraph);
 			}
-		})
+		
 
-//end of on click function	
+		$(".natureChoice").on("click", function() {
+
+			var state = $(this).attr("data-state");
+console.log(state);
+			if (state === "still") {
+				$(this).attr("src", $(this).attr("data-moving"));
+				$(this).attr("date-state", "animated");
+console.log(state);
+			}
+			//this part not working - state is not changing
+			else {
+				$(this).attr("src", $(this).attr("data-unmoving"));
+				$(this).attr("data-state", "still");
+			}
+		//end of image on click function	
+		})
+	});
+//end of button on click function	
 })
 
 //grab 10 static images from giphy api, add rating under them
