@@ -63,13 +63,11 @@ $(".natureButton").on("click", function() {
 		$(".natureChoice").on("click", function() {
 
 			var state = $(this).attr("data-state");
-console.log(state);
+
 			if (state === "still") {
 				$(this).attr("src", $(this).attr("data-moving"));
-				$(this).attr("date-state", "animated");
-console.log(state);
+				$(this).attr("data-state", "animated");
 			}
-			//this part not working - state is not changing
 			else {
 				$(this).attr("src", $(this).attr("data-unmoving"));
 				$(this).attr("data-state", "still");
