@@ -6,16 +6,15 @@ createButtons();
 //function that runs through the array and remakes all the buttons
 function createButtons() {
 
-$("#buttonsHere").empty();
+	$("#buttonsHere").empty();
 
-//loop to append a button for each item in array
-for (i = 0; i < topics.length; i++) {
-	var topicButton = $("<button class='natureButton'>");
-	topicButton.attr("data-name", topics[i]);
-	topicButton.text(topics[i]);
-	$("#buttonsHere").append(topicButton);
-}
-
+	//loop to append a button for each item in array
+	for (i = 0; i < topics.length; i++) {
+		var topicButton = $("<button class='natureButton'>");
+		topicButton.attr("data-name", topics[i]);
+		topicButton.text(topics[i]);
+		$("#buttonsHere").append(topicButton);
+	}
 
 //end of createbuttons function
 }
@@ -78,11 +77,20 @@ $(".natureButton").on("click", function() {
 //end of button on click function	
 })
 
-//grab 10 static images from giphy api, add rating under them
+$("#addNature").on("click", function() {
 
-//images should animate when you click them
+	var natureEntry = $("#natureInput").val();
 
-//images should stop when you click again
+	console.log(natureEntry);
+
+	topics.push(natureEntry);
+
+	//createButtons();
+//end of button on click function	
+})
+
+
+
 
 //make the form button add a button for the user choice
 
