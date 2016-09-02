@@ -1,25 +1,11 @@
 //array of topics (strings)
 var topics = ["beach", "coral", "fire", "forest", "geyser", "lake", "lava", "moon", "mountains", "northern lights", "ocean", "reef", "river", "sunrise", "waterfall"];
 
-createButtons();
+//createButtons();
 
-//function that runs through the array and remakes all the buttons
-function createButtons() {
 
-	$("#buttonsHere").empty();
-
-	//loop to append a button for each item in array
-	for (i = 0; i < topics.length; i++) {
-		var topicButton = $("<button class='natureButton'>");
-		topicButton.attr("data-name", topics[i]);
-		topicButton.text(topics[i]);
-		$("#buttonsHere").append(topicButton);
-	}
-
-//end of createbuttons function
-}
-
-$(".natureButton").on("click", function() {
+//use document on click to grab all buttons, may need to do for images too
+function displayNatureImages() {
 
 	$("#natureImages").empty();
 
@@ -75,22 +61,37 @@ $(".natureButton").on("click", function() {
 		})
 	});
 //end of button on click function	
-})
+}
+
+//function that runs through the array and remakes all the buttons
+function createButtons() {
+
+	$("#buttonsHere").empty();
+
+	//loop to append a button for each item in array
+	for (i = 0; i < topics.length; i++) {
+		var topicButton = $("<button class='natureButton'>");
+		topicButton.attr("data-name", topics[i]);
+		topicButton.text(topics[i]);
+		$("#buttonsHere").append(topicButton);
+	}
+
+//end of createbuttons function
+}
 
 $("#addNature").on("click", function() {
 
-	var natureEntry = $("#natureInput").val();
-
-	console.log(natureEntry);
+	var natureEntry = $("#nature-input").val();
 
 	topics.push(natureEntry);
 
-	//createButtons();
+	createButtons();
+
+	return false;
 //end of button on click function	
 })
 
+$(document).on("click", ".natureButton", displayNatureImages);
 
-
-
-//make the form button add a button for the user choice
+createButtons();
 
