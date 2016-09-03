@@ -79,19 +79,26 @@ function createButtons() {
 //end of createbuttons function
 }
 
-$("#addNature").on("click", function() {
+function addNewButton() {
 
-	var natureEntry = $("#nature-input").val();
+	var natureEntry = $("#nature-input").val().trim();
 
-	topics.push(natureEntry);
+	if ((topics.indexOf(natureEntry) === -1 ) && (natureEntry.length > 0)) {
+	
+		topics.push(natureEntry);
 
-	createButtons();
+		createButtons();
 
+	//end of if statement
+	}
+	
 	return false;
-//end of button on click function	
-})
+
+//end of addnewbutton function	
+}
 
 $(document).on("click", ".natureButton", displayNatureImages);
+$(document).on("click", "#addNature", addNewButton);
 
 createButtons();
 
