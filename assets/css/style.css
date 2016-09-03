@@ -49,3 +49,13 @@ form {
 #nature-input {
 	margin-top: 10px;
 }
+
+p {
+	font-family: 'Hammersmith One', sans-serif;
+	font-size: 20px;
+	color: #194d33;
+}
+
+#natureImages {
+	margin-top: 20px;
+}
